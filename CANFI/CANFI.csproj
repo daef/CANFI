@@ -133,7 +133,7 @@
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mainform.designer.cs">
+    <Compile Include="Mainform.Designer.cs">
       <DependentUpon>Mainform.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
