@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.bw_Measure = new System.ComponentModel.BackgroundWorker();
             this.ss_main = new System.Windows.Forms.StatusStrip();
@@ -89,7 +84,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.gb_Sweep_Chart = new System.Windows.Forms.GroupBox();
-            this.ch_Sweep = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tp_Meter = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -99,7 +93,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.ch_FFT = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_RTL_Status = new System.Windows.Forms.Label();
@@ -155,12 +148,10 @@
             this.groupBox9.SuspendLayout();
             this.gb_Sweep_RTL.SuspendLayout();
             this.gb_Sweep_Chart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ch_Sweep)).BeginInit();
             this.tp_Meter.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ch_FFT)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -773,7 +764,6 @@
             // 
             // gb_Sweep_Chart
             // 
-            this.gb_Sweep_Chart.Controls.Add(this.ch_Sweep);
             this.gb_Sweep_Chart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb_Sweep_Chart.Location = new System.Drawing.Point(3, 3);
             this.gb_Sweep_Chart.Name = "gb_Sweep_Chart";
@@ -781,36 +771,6 @@
             this.gb_Sweep_Chart.TabIndex = 0;
             this.gb_Sweep_Chart.TabStop = false;
             this.gb_Sweep_Chart.Text = "Diagram";
-            // 
-            // ch_Sweep
-            // 
-            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisY.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.AxisY2.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisY2.MajorGrid.Enabled = false;
-            chartArea1.Name = "Sweep";
-            this.ch_Sweep.ChartAreas.Add(chartArea1);
-            this.ch_Sweep.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ch_Sweep.Location = new System.Drawing.Point(3, 16);
-            this.ch_Sweep.Name = "ch_Sweep";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "Sweep";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Color = System.Drawing.Color.Blue;
-            series1.Name = "NF";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "Sweep";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Red;
-            series2.Name = "Gain";
-            series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            this.ch_Sweep.Series.Add(series1);
-            this.ch_Sweep.Series.Add(series2);
-            this.ch_Sweep.Size = new System.Drawing.Size(774, 179);
-            this.ch_Sweep.TabIndex = 0;
-            this.ch_Sweep.Text = "Sweep";
             // 
             // tp_Meter
             // 
@@ -906,7 +866,6 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.ch_FFT);
             this.groupBox5.Controls.Add(this.panel1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(95, 222);
@@ -915,44 +874,6 @@
             this.groupBox5.TabIndex = 66;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "SDR Values";
-            // 
-            // ch_FFT
-            // 
-            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisX.LabelStyle.Enabled = false;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea2.AxisY.LabelStyle.Enabled = false;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.Name = "Main";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 100F;
-            chartArea2.Position.Width = 100F;
-            this.ch_FFT.ChartAreas.Add(chartArea2);
-            this.ch_FFT.Location = new System.Drawing.Point(154, 19);
-            this.ch_FFT.Name = "ch_FFT";
-            series3.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            series3.BackImageTransparentColor = System.Drawing.Color.Transparent;
-            series3.BackSecondaryColor = System.Drawing.Color.Transparent;
-            series3.BorderColor = System.Drawing.Color.White;
-            series3.BorderWidth = 3;
-            series3.ChartArea = "Main";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series3.Color = System.Drawing.Color.Blue;
-            series3.LabelForeColor = System.Drawing.Color.White;
-            series3.Name = "FFT";
-            this.ch_FFT.Series.Add(series3);
-            this.ch_FFT.Size = new System.Drawing.Size(520, 78);
-            this.ch_FFT.TabIndex = 70;
-            this.ch_FFT.Text = "FFT";
             // 
             // panel1
             // 
@@ -1565,13 +1486,11 @@
             this.gb_Sweep_RTL.ResumeLayout(false);
             this.gb_Sweep_RTL.PerformLayout();
             this.gb_Sweep_Chart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ch_Sweep)).EndInit();
             this.tp_Meter.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ch_FFT)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1638,7 +1557,6 @@
         private CANFIUpDown ud_RTL_Sweep_Stop;
         private CANFIUpDown ud_RTL_Sweep_Start;
         private System.Windows.Forms.GroupBox gb_Sweep_Chart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart ch_Sweep;
         private System.Windows.Forms.TabPage tp_Meter;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label5;
@@ -1659,7 +1577,6 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.NumericUpDown ud_Smoothing;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DataVisualization.Charting.Chart ch_FFT;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbl_RTL_Status;

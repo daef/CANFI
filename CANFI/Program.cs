@@ -40,16 +40,9 @@ namespace CANFI
                 process.PriorityClass = ProcessPriorityClass.High;
             }
             */
-            try
-            {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
-            }
-            catch (Exception e1)
-            {
-                MessageBox.Show("Exception: " + e1.Message+"\nInner:"+e1.InnerException.Message,"Program.cs");
-            }
 
         }
     }

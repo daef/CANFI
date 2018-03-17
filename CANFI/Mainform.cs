@@ -88,8 +88,6 @@ namespace CANFI
 
         public MainForm()
         {
-            try
-            {
                 // save current local LocalCulture
                 LocalCulture = Application.CurrentCulture;
 
@@ -105,11 +103,6 @@ namespace CANFI
                 }
 
                 InitializeComponent();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex.Message + "\nInner:" + ex.InnerException.Message, "Init");
-            }
 
             // set rtlsdr directory
              rtlsdr_dir = Application.StartupPath + Path.DirectorySeparatorChar + Properties.Settings.Default.RTL_DLL_DirName;
@@ -1035,16 +1028,16 @@ namespace CANFI
                                 // add a new one if not found
                                 try
                                 {
-                                    System.Windows.Forms.DataVisualization.Charting.DataPoint p = ch_Sweep.Series["NF"].Points.FindByValue(System.Convert.ToDouble(r.Frequency), "X", 0);
-                                    p.SetValueY(yf);
+                                    //System.Windows.Forms.DataVisualization.Charting.DataPoint p = ch_Sweep.Series["NF"].Points.FindByValue(System.Convert.ToDouble(r.Frequency), "X", 1);
+                                    //P.SetValueY(yf);
                                 }
                                 catch
                                 {
-                                    ch_Sweep.Series["NF"].Points.AddXY(r.Frequency, yf);
+                                    //ch_Sweep.Series["NF"].Points.AddXY(r.Frequency, yf);
                                 }
                                 // set X-axis span and update chart
-                                ch_Sweep.ChartAreas["Sweep"].AxisX.Minimum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Start);
-                                ch_Sweep.ChartAreas["Sweep"].AxisX.Maximum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Stop);
+                                //ch_Sweep.ChartAreas["Sweep"].AxisX.Minimum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Start);
+                                //ch_Sweep.ChartAreas["Sweep"].AxisX.Maximum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Stop);
                             }
                         }
                         break;
@@ -1063,12 +1056,12 @@ namespace CANFI
                                 // add a new one if not found
                                 try
                                 {
-                                    System.Windows.Forms.DataVisualization.Charting.DataPoint p = ch_Sweep.Series["NF"].Points.FindByValue(System.Convert.ToDouble(r.Frequency), "X", 0);
-                                    p.SetValueY(yf);
+                                    //System.Windows.Forms.DataVisualization.Charting.DataPoint p = ch_Sweep.Series["NF"].Points.FindByValue(System.Convert.ToDouble(r.Frequency), "X", 0);
+                                    //p.SetValueY(yf);
                                 }
                                 catch
                                 {
-                                    ch_Sweep.Series["NF"].Points.AddXY(r.Frequency, yf);
+                                    //ch_Sweep.Series["NF"].Points.AddXY(r.Frequency, yf);
                                 }
                             }
                             if (!Double.IsNaN(yg))
@@ -1077,17 +1070,17 @@ namespace CANFI
                                 // add a new one if not found
                                 try
                                 {
-                                    System.Windows.Forms.DataVisualization.Charting.DataPoint p = ch_Sweep.Series["Gain"].Points.FindByValue(System.Convert.ToDouble(r.Frequency), "X", 0);
-                                    p.SetValueY(yg);
+//                                    System.Windows.Forms.DataVisualization.Charting.DataPoint p = ch_Sweep.Series["Gain"].Points.FindByValue(System.Convert.ToDouble(r.Frequency), "X", 0);
+//                                    p.SetValueY(yg);
                                 }
                                 catch
                                 {
-                                    ch_Sweep.Series["Gain"].Points.AddXY(r.Frequency, yg);
+                                    //ch_Sweep.Series["Gain"].Points.AddXY(r.Frequency, yg);
                                 }
                             }
                             // set X-axis span and update chart
-                            ch_Sweep.ChartAreas["Sweep"].AxisX.Minimum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Start);
-                            ch_Sweep.ChartAreas["Sweep"].AxisX.Maximum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Stop);
+                            //ch_Sweep.ChartAreas["Sweep"].AxisX.Minimum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Start);
+                            //ch_Sweep.ChartAreas["Sweep"].AxisX.Maximum = System.Convert.ToDouble(Properties.Settings.Default.RTL_Frequency_Stop);
                         }
                         break;
                     default:
@@ -1147,54 +1140,6 @@ namespace CANFI
 
         public void ReportFFT(double[] e)
         {
-            // callback for showing FFT results
-            // get additional info from fft
-            if (e == null)
-                return;
-            try
-            {
-                // get length of FFT array
-                int len = e.Length;
-                // displayed count of points, reduced to 512 to avoid performance issues
-                int displen = 512;
-                int step = len / displen;
-                double[] c = new double[displen];
-                // reduce the FFT results to fit the display
-                for (int i = 0; i < displen; i++)
-                {
-                    double sum = 0;
-                    for (int j = 0; j < step; j++)
-                    {
-                        sum += e[i * step + j];
-                    }
-                    c[i] = sum / step;
-                    // check if mean value is NaN --> set it to 0
-                    if (double.IsNaN(c[i]))
-                        c[i] = 0;
-                }
-                // set display value range
-                int disp_min = 0;
-                int disp_max = 60;
-                // set basic appearance of display
-                ch_FFT.ChartAreas["Main"].AxisY.Minimum = disp_min;
-                ch_FFT.ChartAreas["Main"].AxisY.Maximum = disp_max;
-                ch_FFT.ChartAreas["Main"].AxisX.MajorGrid.Interval = c.Length / 2;
-                // clear the FFT series
-                ch_FFT.Series["FFT"].Points.Clear();
-                // add new points
-                for (int i = 0; i < c.Length; i++)
-                {
-                    // clip FFT values to avoid display exceptions
-                    c[i] = Math.Min(disp_max,c[i]);
-                    c[i] = Math.Max(disp_min, c[i]);
-                    ch_FFT.Series["FFT"].Points.Add(c[i]);
-
-                }
-            }
-            catch
-            {
-                // do nothing if failed
-            }
         }
 
         #endregion
@@ -1381,8 +1326,8 @@ namespace CANFI
                 Stop();
                 InitAverages();
                 // clear sweep chart
-                ch_Sweep.Series["NF"].Points.Clear();
-                ch_Sweep.Series["Gain"].Points.Clear();
+                //ch_Sweep.Series["NF"].Points.Clear();
+                //ch_Sweep.Series["Gain"].Points.Clear();
                 // start timer for tone output
                 ti_Tone.Start();
                 Measure();
@@ -1625,10 +1570,10 @@ namespace CANFI
             // adjust chart area
             gb_Sweep_Chart.Width = tp_Sweep.Width;
             gb_Sweep_Chart.Height = tp_Sweep.Height - gb_Sweep.Height - 10;
-            if (this.WindowState == FormWindowState.Maximized)
-                ch_Sweep.ChartAreas["Sweep"].AxisY.MinorGrid.Enabled = true;
-            else
-                ch_Sweep.ChartAreas["Sweep"].AxisY.MinorGrid.Enabled = false;
+            //if (this.WindowState == FormWindowState.Maximized)
+            //    ch_Sweep.ChartAreas["Sweep"].AxisY.MinorGrid.Enabled = true;
+            //else
+            //    ch_Sweep.ChartAreas["Sweep"].AxisY.MinorGrid.Enabled = false;
         }
 
         private void ud_RTL_Sweep_Start_ValueChanged(object sender, EventArgs e)
